@@ -25,11 +25,11 @@ class GraphTest {
         graph.addEdge(user, Edge.Viewed(item))
         graph.addEdge(user, Edge.Bought(item))
 
-        val edges = graph.getEdges(user).toList()
+        val edges = graph.getEdges(user).sortedBy { it.type }
         assertEquals(2, edges.size)
-        assertEquals("Viewed", edges[0].type)
-        assertEquals(0.1, edges[0].weight)
-        assertEquals("Bought", edges[1].type)
-        assertEquals(0.4, edges[1].weight)
+        assertEquals("Bought", edges[0].type)
+        assertEquals(0.4, edges[0].weight)
+        assertEquals("Viewed", edges[1].type)
+        assertEquals(0.1, edges[1].weight)
     }
 }
